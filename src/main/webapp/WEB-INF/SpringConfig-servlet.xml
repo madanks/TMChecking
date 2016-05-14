@@ -18,7 +18,7 @@
 	<!-- Spring Data JPA by default looks for an EntityManagerFactory named 
 		entityManagerFactory -->
 	<!-- <jpa:repositories base-package="your.package" entity-manager-factory-ref="emf"/> -->
-	<jpa:repositories base-package="com.cs544.mum.repository" />
+	<jpa:repositories base-package="com.cs544.mum" />
 
 	<!-- the datasource -->
 	<bean id="dataSource"
