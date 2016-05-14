@@ -14,15 +14,11 @@
 	<!-- Scan the annotation -->
 	<context:component-scan base-package="com.cs544.mum"></context:component-scan>
 	<context:annotation-config />
-	<jpa:repositories base-package="com.cs544.mum.repository" />
 
-	<!-- Session Factory -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="hibernateProperties" ref="hibernateProperties" />
-		<property name="packagesToScan" value="com.cs544.mum.domain"></property>
-	</bean>
+	<!-- Spring Data JPA by default looks for an EntityManagerFactory named 
+		entityManagerFactory -->
+	<!-- <jpa:repositories base-package="your.package" entity-manager-factory-ref="emf"/> -->
+	<jpa:repositories base-package="com.cs544.mum.repository" />
 
 	<!-- the datasource -->
 	<bean id="dataSource"
@@ -34,29 +30,26 @@
 		<property name="password" value="" />
 	</bean>
 
-	<!-- hibernate Properties -->
-	<bean id="hibernateProperties"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="properties">
+	<!-- JPA properties -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.cs544.mum.domain" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
-				</prop>
-				<prop key="connection.pool_size">1</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
 	</bean>
-
-	<!-- Annotation driven Transaction -->
-	<tx:annotation-driven transaction-manager="txManager" />
-
-	<!-- Hibernate Transaction Manager -->
-	<bean id="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-
 	<!-- View Resolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
