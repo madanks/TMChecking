@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ViewController {
 	@RequestMapping("/")
 	public String goToHomePage() {
-		return "home";
+		return "test";
 	}
-	@RequestMapping("/home")
+	@RequestMapping("/test")
 	public String goToHomePag() {
 		return "test";
 	}
@@ -19,6 +19,7 @@ public class ViewController {
 	@RequestMapping(value="/admin/home" , method = RequestMethod.GET)
 	public String  privateHome ()
 	{
-		return "adminHome" ; 
+		return "home" ; 
 	}
+	 
 }
