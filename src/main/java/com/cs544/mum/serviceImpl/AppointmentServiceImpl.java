@@ -11,8 +11,8 @@ import com.cs544.mum.domain.Appointment;
 import com.cs544.mum.repository.AppointmentRepository;
 import com.cs544.mum.service.AppointmentService;
 
+@Service
 @Transactional
-@Repository
 public class AppointmentServiceImpl implements AppointmentService {
 	@Autowired
 	private AppointmentRepository appointmentrepo;
