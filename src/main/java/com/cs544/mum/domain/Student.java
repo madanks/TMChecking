@@ -13,14 +13,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Student extends Person {
 	@GeneratedValue
-	@Column(unique=true)
+	@Column(unique = true)
 	private int studentId;
+
 	private Date entryDate;
+
+	private int count=0;
 
 	private String stream;
 
 	@ManyToMany
-	@JoinTable(name = "Students_Appointments", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "appointmentId"))
+	@JoinTable(name = "Students_Appointments", joinColumns = @JoinColumn(name = "username") , inverseJoinColumns = @JoinColumn(name = "appointmentId") )
 	private List<Appointment> appointmentList;
 
 	public int getStudentId() {
@@ -54,6 +57,13 @@ public class Student extends Person {
 	public void setAppointmentList(List<Appointment> appointmentList) {
 		this.appointmentList = appointmentList;
 	}
-	
-	
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 }

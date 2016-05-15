@@ -11,17 +11,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Appointment {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 
 	private Date date;
+
 	private Date createdDate;
+
 	private Date bookedDate;
+
 	private String buildingName;
+
+	private boolean completed = false;
+
 	private int roomNo;
 
 	@ManyToMany(mappedBy = "appointmentList")
@@ -34,7 +42,7 @@ public class Appointment {
 	@Enumerated(EnumType.STRING)
 	private AppointmentType type;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -105,6 +113,13 @@ public class Appointment {
 	public void setType(AppointmentType type) {
 		this.type = type;
 	}
-	
-	
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
 }
