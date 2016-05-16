@@ -13,12 +13,20 @@
 
 	<!-- Scan the annotation -->
 	<context:component-scan base-package="com.cs544.mum"></context:component-scan>
-	<context:annotation-config />
+
 
 	<!-- Spring Data JPA by default looks for an EntityManagerFactory named 
 		entityManagerFactory -->
 	<!-- <jpa:repositories base-package="your.package" entity-manager-factory-ref="emf"/> -->
 	<jpa:repositories base-package="com.cs544.mum" />
+
+	<!-- This allow for dispatching requests to Controllers by registering two 
+		beans - DefaultAnnotationHandlerMapping and AnnotationMethodHandlerAdapter -->
+	<mvc:annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources/ directory it needs mvc:annotation-driven -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- the datasource -->
 	<bean id="dataSource"
@@ -40,7 +48,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
@@ -58,4 +66,5 @@
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
 </beans>

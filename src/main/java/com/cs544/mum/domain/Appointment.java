@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Appointment {
@@ -20,15 +21,24 @@ public class Appointment {
 	@GeneratedValue
 	private long id;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
+	@Transient
+	private String tempdate;
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 
 	private Date bookedDate;
 
 	private String buildingName;
 
-	private boolean completed = false;
+	private boolean completed;
+
+	private int total;
+
+	private int enrolled;
 
 	private int roomNo;
 
@@ -120,6 +130,34 @@ public class Appointment {
 
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTempdate() {
+		return tempdate;
+	}
+
+	public void setTempdate(String tempdate) {
+		this.tempdate = tempdate;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public int getEnrolled() {
+		return enrolled;
+	}
+
+	public void setEnrolled(int enrolled) {
+		this.enrolled = enrolled;
 	}
 
 }

@@ -16,4 +16,6 @@ public interface AppointmentDAO extends JpaRepository<Appointment, Long> {
 
 	@Query("select a from Appointment a join a.studentList s where  a.date between :start and :end")
 	public List<Appointment> findByWeek(@Param("start") Date start, @Param("end") Date end);
+
+	public List<Appointment> findBydateBetween( Date start, Date end);
 }

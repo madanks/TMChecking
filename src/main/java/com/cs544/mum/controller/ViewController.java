@@ -11,4 +11,9 @@ public class ViewController {
 		return "home";
 	}
 
+	@RequestMapping("/login")
+	public String goToLoginPage() {
+		return "login";
+	}
+
 }
