@@ -6,7 +6,7 @@
 <title>Welcome</title>
 
 <meta name="EA Project" content="width=device-width, initial-scale=1.0">
-<meta name="responxive project mandan" content="">
+<meta name="responxive project madan" content="">
 <meta name="madan EA" content="">
 
 
@@ -49,22 +49,27 @@
 	<div class="wrapper">
 		<jsp:include page="header.jsp" />
 
-
-
-
-		<!--=== Breadcrumbs ===-->
 		<div class="">
 			<div class="container">
-				<!-- <h1 class="pull-left">New Appointments</h1> -->
+				<h1 class="pull-left">Create New Appointments</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li class="active">Add Appointments</li>
+				<li><a
+						href="${pageContext.request.contextPath}/home">Go Home</a></li>
+					<li class="active"><a
+						href="${pageContext.request.contextPath}/staff/addappointment">Add
+							New Appointments</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/staff/todayslist">Today's
+							Appointments</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/staff/weekelylist">Weekely
+							Appointments</a></li>
 				</ul>
+
 			</div>
-			<!--/container-->
+
 		</div>
-		<!--/breadcrumbs-->
-		<!--=== End Breadcrumbs ===-->
+
 
 		<!--=== Content Part ===-->
 		<div class="container content">
@@ -73,7 +78,7 @@
 					<form:form method="POST" class="reg-page" commandName="appoinment"
 						action="${action}">
 						<div class="reg-header">
-							<h2>Create New Appointments</h2>
+							<h2></h2>
 
 						</div>
 

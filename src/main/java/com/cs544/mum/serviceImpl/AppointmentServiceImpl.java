@@ -14,11 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cs544.mum.dao.AppointmentDAO;
+import com.cs544.mum.dao.StaffDAO;
 import com.cs544.mum.dao.StudentDAO;
 import com.cs544.mum.domain.Appointment;
+import com.cs544.mum.domain.Staff;
 import com.cs544.mum.domain.Student;
 import com.cs544.mum.repository.AppointmentRepository;
 import com.cs544.mum.service.AppointmentService;
+import com.cs544.mum.util.SecurityUtil;
 
 @Service
 @Transactional
@@ -32,12 +35,18 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Autowired
 	private StudentDAO studentDAO;
 
+	@Autowired
+	private StaffDAO staffDAO;
+
 	public void save(Appointment appointment) throws ParseException {
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 		Date date = simpleDateFormat.parse(appointment.getTempdate());
 		appointment.setDate(date);
 		appointment.setCreatedDate(new Date());
+		Staff s = staffDAO.findOne(SecurityUtil.getUsername());
+		// appointment.setStaff(staff);
+		appointment.setStaff(s);
 		appointmentrepo.save(appointment);
 	}
 
@@ -53,7 +62,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<Appointment> findAvailableAppointment() {
 		DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Date start = new Date();
-		List<Appointment> a = appointmentdao.findBydateBetween(date.format(start), date.format(addDays(start, 7)));
+
+		String s = date.format(start);
+		String e = date.format(addDays(start, 7));
+		List<Appointment> a = appointmentdao.findBydateBetween(s, e);
 		return a;
 	}
 

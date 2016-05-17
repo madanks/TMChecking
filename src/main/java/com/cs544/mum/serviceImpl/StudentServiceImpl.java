@@ -12,6 +12,7 @@ import com.cs544.mum.dao.StudentDAO;
 import com.cs544.mum.domain.Appointment;
 import com.cs544.mum.domain.Student;
 import com.cs544.mum.service.StudentService;
+import com.cs544.mum.util.SecurityUtil;
 
 @Service
 @Transactional
@@ -26,11 +27,8 @@ public class StudentServiceImpl implements StudentService {
 		Appointment appo = appointmentdao.findOne(id);
 		int e = appo.getEnrolled();
 		appo.setEnrolled(e + 1);
-		Student student = studentDAO.findOne("bimal");
-		List<Student> st = new ArrayList<Student>();
-		List<Appointment> app = new ArrayList<Appointment>();
-		app.add(appo);
-		student.setAppointmentList(app);
+		Student student = studentDAO.findOne(SecurityUtil.getUsername());
+		student.setAppointmentList(appo);
 		studentDAO.save(student);
 
 	}

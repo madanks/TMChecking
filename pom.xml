@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<properties>
 		<jackson.version>2.7.3</jackson.version>
-		<spring.security.version>4.0.3.RELEASE</spring.security.version>
+		<spring.security.version>4.1.0.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>

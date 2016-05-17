@@ -1,44 +1,40 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-    http://www.springframework.org/schema/security
-    http://www.springframework.org/schema/security/spring-security-4.0.xsd">
-
-	<!-- login-processing-url="/j_spring_security_check" -->
-	<!-- <http pattern="/login" security="none" /> -->
-
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/login" access="isAnonymous()" />
 		<intercept-url pattern="/loginfailed" access="isAnonymous()" />
 
 
 		<form-login login-processing-url="/j_spring_security_check"
-			login-page="/login" authentication-failure-url="/login" 
-			default-target-url="/availableappointment" />
-		<logout logout-success-url="/login" />
+			login-page="/login" authentication-failure-url="/error-login"
+			default-target-url="/home" />
+		<logout logout-success-url="/logout" />
+		<logout logout-success-url="/logout" delete-cookies="JSESSIONID"
+			invalidate-session="true" />
 
-		<!-- <logout logout-url="/j_spring_security_logout" logout-success-url="/home" 
-			/> -->
-		<intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
-		<intercept-url pattern="/availableappointment"
+		<intercept-url pattern="/staff/**" access="hasAnyRole('ROLE_STAFF')" />
+		<intercept-url pattern="/student/**" access="hasAnyRole('ROLE_STUDENT')" />
+		<intercept-url pattern="/home"
 			access="hasAnyRole('ROLE_STUDENT' ,'ROLE_STAFF')" />
 
 
 	</http>
 
 	<authentication-manager>
-		<authentication-provider>
-			<user-service> 
-				<user name="a" password="a" authorities="ROLE_STUDENT" />
+<!-- 		<authentication-provider>
+			<user-service>
+				<user name="madan" password="madan" authorities="ROLE_STUDENT" />
+				<user name="abc" password="abc" authorities="ROLE_STAFF" />
 			</user-service>
-		</authentication-provider>
+		</authentication-provider> -->
 
 		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource" 
-			users-by-username-query="select username,password,enabled from tmchecking.user  where username=?"
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select username,password,enabled from tmchecking.user  where username=?"
 				authorities-by-username-query="select username, roles authority from tmchecking.user  where username=?" />
-			
+
 		</authentication-provider>
 	</authentication-manager>
 

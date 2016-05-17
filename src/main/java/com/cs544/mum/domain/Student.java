@@ -1,6 +1,7 @@
 package com.cs544.mum.domain;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import org.hibernate.mapping.Collection;
 
 @Entity
 public class Student extends Person implements Serializable {
@@ -58,11 +61,15 @@ public class Student extends Person implements Serializable {
 	}
 
 	public List<Appointment> getAppointmentList() {
-		return appointmentList;
+		return Collections.unmodifiableList(appointmentList);
 	}
 
-	public void setAppointmentList(List<Appointment> appointmentList) {
-		this.appointmentList = appointmentList;
+	public void setAppointmentList(Appointment app) {
+		if (!appointmentList.contains(app)) {
+			appointmentList.add(app);
+			app.setStudentList(this);
+		}
+
 	}
 
 	public int getCount() {
@@ -71,6 +78,11 @@ public class Student extends Person implements Serializable {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public void removeAppointment(Appointment app) {
+		app.setStudentList(null);
+		this.appointmentList.remove(app);
 	}
 
 }

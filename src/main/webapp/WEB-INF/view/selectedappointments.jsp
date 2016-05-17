@@ -48,8 +48,24 @@
 	<div class="wrapper">
 		<jsp:include page="header.jsp" />
 
+		<div class="">
+			<div class="container">
+				<h1 class="pull-left">Selected Appointment</h1>
+				<ul class="pull-right breadcrumb">
 
+					<li><a href="${pageContext.request.contextPath}/home">Go
+							Home</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/student/availableappointment">Available
+							Appointments</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/student/selectedappointment">My
+							upcomming Appointments</a></li>
+				</ul>
 
+			</div>
+
+		</div>
 
 		<div class="container" style="height: 450px;">
 			<!-- Begin Table Search Panel v1 -->

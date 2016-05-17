@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <head>
 <title>Welcome</title>
 
@@ -47,7 +49,36 @@
 	<div class="wrapper">
 		<jsp:include page="header.jsp" />
 
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<sec:authorize access="hasAnyRole('ROLE_STAFF')">
+					<ul class="pull-right breadcrumb">
+						<li><a
+							href="${pageContext.request.contextPath}/staff/addappointment">Add
+								New Appointments</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/staff/todayslist">Today's
+								Appointments</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/staff/weekelylist">Weekely
+								Appointments</a></li>
 
+					</ul>
+				</sec:authorize>
+				<sec:authorize access="hasAnyRole('ROLE_STUDENT')">
+
+					<ul class="pull-left breadcrumb">
+						<li><a href="${pageContext.request.contextPath}/student/availableappointment">Available
+								Appointments</a></li>
+						<li><a href="${pageContext.request.contextPath}/student/selectedappointment">My
+								upcomming Appointments</a></li>
+					</ul>
+				</sec:authorize>
+			</div>
+			<!--/container-->
+		</div>
+		<!--/breadcrumbs-->
 
 
 		<div class="container" style="height: 450px;">

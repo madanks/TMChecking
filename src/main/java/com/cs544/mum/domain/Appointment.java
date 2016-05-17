@@ -1,5 +1,6 @@
 package com.cs544.mum.domain;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -102,11 +103,12 @@ public class Appointment {
 	}
 
 	public List<Student> getStudentList() {
-		return studentList;
+		return Collections.unmodifiableList(studentList);
 	}
 
-	public void setStudentList(List<Student> studentList) {
-		this.studentList = studentList;
+	public void setStudentList(Student student) {
+		studentList.add(student);
+		student.setAppointmentList(this);
 	}
 
 	public Staff getStaff() {

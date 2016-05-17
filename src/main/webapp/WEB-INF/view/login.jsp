@@ -54,15 +54,12 @@
 		<div class="container content">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-					<c:if test="${error eq true}">
-						<p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+					<c:if test="${error == true}">
+						<b style="color: red">Invalid login or password.</b>
 					</c:if>
 					<c:url value="${request.contextPath}/j_spring_security_check"
 						var="loginUrl" />
 					<form class="reg-page" method="post" action="${loginUrl}">
-						<%-- <form class="reg-page" method="post" action="<c:url value = 'j_spring_security_check' />"> --%>
-						<%-- <form action="./upload?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"> --%>
-						<%-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/> --%>
 						<input type="hidden"
 							name="<c:out value="${_csrf.parameterName}"/>"
 							value="<c:out value="${_csrf.token}"/>" />
