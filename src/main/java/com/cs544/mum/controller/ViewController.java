@@ -13,8 +13,11 @@ public class ViewController {
 
 	@RequestMapping("/login")
 	public String goToLoginPage() {
-		return "login";
-		 
+		return "login"; 
+	}
+	@RequestMapping("/login.jsp")
+	public String goToLoginPage1() {
+		return "login"; 
 	}
 	@RequestMapping("/test")
 	public String goToHomePag() {

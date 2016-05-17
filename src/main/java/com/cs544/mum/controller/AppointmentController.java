@@ -44,7 +44,7 @@ public class AppointmentController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/student/availableappointment", method = RequestMethod.GET)
+	@RequestMapping(value = "/availableappointment", method = RequestMethod.GET)
 	public String availableAppointment(Model model) {
 		model.addAttribute("appointment", appointmentService.findAvailableAppointment());
 		return "availableAppointments";

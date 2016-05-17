@@ -5,23 +5,50 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
+	<!-- login-processing-url="/j_spring_security_check" -->
+	<!-- <http pattern="/login" security="none" /> -->
+
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/login" access="isAnonymous()" />
+		<intercept-url pattern="/loginfailed" access="isAnonymous()" />
 
 
+		<form-login login-processing-url="/j_spring_security_check"
+			login-page="/login" authentication-failure-url="/login" 
+			default-target-url="/availableappointment" />
+		<logout logout-success-url="/login" />
 
-	<http auto-config="true" use-expressions="false">
+		<!-- <logout logout-url="/j_spring_security_logout" logout-success-url="/home" 
+			/> -->
 		<intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/availableappointment"
+			access="hasAnyRole('ROLE_STUDENT' ,'ROLE_STAFF')" />
+
+
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
-		<!-- <password-encoder ref="encoder" /> -->
-			<user-service>
-				<!-- <user name="admin"
-					password="$2a$12$WYkfSoen83SugMroJibXrOVa89o7GCzCtIStP5qWa7tZHw67kzt8m"
-					authorities="ROLE_ADMIN" /> -->
-				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+			<user-service> 
+				<user name="a" password="a" authorities="ROLE_STUDENT" />
 			</user-service>
+		</authentication-provider>
+
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource" 
+			users-by-username-query="select username,password,enabled from tmchecking.user  where username=?"
+				authorities-by-username-query="select username, roles authority from tmchecking.user  where username=?" />
+			
 		</authentication-provider>
 	</authentication-manager>
 
+
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url"
+			value="jdbc:mysql://localhost/tmchecking" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="" />
+	</beans:bean>
 </beans:beans>
