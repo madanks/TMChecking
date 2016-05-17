@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViewController {
 	@RequestMapping("/")
 	public String goToHomePage() {
-		return "home";
+		return "login";
 	}
 
 	@RequestMapping("/login")

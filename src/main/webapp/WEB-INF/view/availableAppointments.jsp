@@ -85,7 +85,7 @@
 									<td>${app.total}</td>
 									<td>${app.enrolled}</td>
 									<td><ul class="list-inline table-buttons">
-											<li><a href="#"> <span
+											<li><a href="${pageContext.request.contextPath}/selectappointment/${app.id}"> <span
 													class="glyphicon glyphicon-ok-sign"></span>
 
 											</a></li>

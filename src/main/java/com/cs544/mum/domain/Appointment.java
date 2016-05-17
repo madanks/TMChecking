@@ -3,6 +3,7 @@ package com.cs544.mum.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -42,7 +43,7 @@ public class Appointment {
 
 	private int roomNo;
 
-	@ManyToMany(mappedBy = "appointmentList")
+	@ManyToMany(mappedBy = "appointmentList", cascade = CascadeType.PERSIST)
 	private List<Student> studentList;
 
 	@ManyToOne
@@ -158,6 +159,11 @@ public class Appointment {
 
 	public void setEnrolled(int enrolled) {
 		this.enrolled = enrolled;
+	}
+
+	public void removeStudent(Student student) {
+		student.setAppointmentList(null);
+		this.studentList.remove(student);
 	}
 
 }
