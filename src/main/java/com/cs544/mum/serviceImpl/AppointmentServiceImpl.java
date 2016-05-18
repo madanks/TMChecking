@@ -65,7 +65,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 		String s = date.format(start);
 		String e = date.format(addDays(start, 7));
-		List<Appointment> a = appointmentdao.findBydateBetween(s, e);
+		String st = SecurityUtil.getUsername();
+		List<Appointment> a = appointmentdao.findBydateBetween(st, s, e);
 		return a;
 	}
 

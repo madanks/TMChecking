@@ -69,7 +69,7 @@
 		</div>
 
 
-		<div class="container" style="height: 450px;">
+		<div class="container" >
 			<!-- Begin Table Search Panel v1 -->
 			<div class="table-search-v1 panel panel-dark margin-bottom-50">
 				<div class="panel-heading">
