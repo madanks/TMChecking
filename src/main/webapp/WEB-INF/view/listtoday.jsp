@@ -49,6 +49,27 @@
 		<jsp:include page="header.jsp" />
 
 
+		<div class="">
+			<div class="container">
+				<h1 class="pull-left">Today's Appointments</h1>
+				<ul class="pull-right breadcrumb">
+					<li><a href="${pageContext.request.contextPath}/home">Go
+							Home</a></li>
+					<li class="active"><a
+						href="${pageContext.request.contextPath}/staff/addappointment">Add
+							New Appointments</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/staff/todayslist">Today's
+							Appointments</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/staff/weekelylist">Weekely
+							Appointments</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+
 
 
 		<div class="container" style="height: 450px;">
@@ -69,8 +90,6 @@
 								<th>Entry</th>
 								<th>Stream</th>
 								<th>Total Checking</th>
-
-
 								<th>Approve</th>
 							</tr>
 						</thead>
@@ -83,8 +102,10 @@
 									<td>${app.entryDate}</td>
 									<td>${app.stream}</td>
 									<td>${app.count}</td>
+									
 									<td><ul class="list-inline table-buttons">
-											<li><a href="${pageContext.request.contextPath}/approve/${app.userName}"<%-- onClick="send('${app.}')" --%>>
+											<li><a
+												href="${pageContext.request.contextPath}/approve/${app.userName}"<%-- onClick="send('${app.}')" --%>>
 													<span class="glyphicon glyphicon-ok-sign"></span>
 
 											</a></li>

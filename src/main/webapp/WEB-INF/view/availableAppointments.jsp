@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <head>
@@ -50,7 +51,7 @@
 
 		<div class="">
 			<div class="container">
-				<h1 class="pull-left">Available Appointment</h1>
+				<h1 class="pull-left">Total TM checked : ${count}</h1>
 				<ul class="pull-right breadcrumb">
 
 					<li><a

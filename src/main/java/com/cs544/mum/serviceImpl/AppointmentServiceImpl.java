@@ -113,7 +113,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<Appointment> findSelectedAppointment() {
 		DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Date start = new Date();
-		String username = "madan";
+		String username = SecurityUtil.getUsername();
 		List<Appointment> a = appointmentdao.findselectedAppointment(date.format(start), username);
 		return a;
 	}

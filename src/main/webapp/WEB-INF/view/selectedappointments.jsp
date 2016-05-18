@@ -50,7 +50,7 @@
 
 		<div class="">
 			<div class="container">
-				<h1 class="pull-left">Selected Appointment</h1>
+				<h1 class="pull-left">Total TM checked : ${count}</h1>
 				<ul class="pull-right breadcrumb">
 
 					<li><a href="${pageContext.request.contextPath}/home">Go

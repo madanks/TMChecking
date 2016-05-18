@@ -48,89 +48,109 @@
 	<div class="wrapper">
 		<jsp:include page="header.jsp" />
 
+				<div class="">
+					<div class="container">
+						<h1 class="pull-left">Weekely Appointments</h1>
+						<ul class="pull-right breadcrumb">
+							<li><a href="${pageContext.request.contextPath}/home">Go
+									Home</a></li>
+							<li class="active"><a
+								href="${pageContext.request.contextPath}/staff/addappointment">Add
+									New Appointments</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/staff/todayslist">Today's
+									Appointments</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/staff/weekelylist">Weekely
+									Appointments</a></li>
+						</ul>
 
+					</div>
 
-
-		<div class="container" style="height: 450px;">
-			<!-- Begin Table Search Panel v1 -->
-			<div class="table-search-v1 panel panel-dark margin-bottom-50">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<i class="fa fa-globe"></i> Weekely Appointments
-					</h3>
 				</div>
-				<div class="table-responsive">
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>Student Name</th>
-								<th class="hidden-sm">Email</th>
-								<th>Phone</th>
-								<th>Entry</th>
-								<th>Stream</th>
-								<th>Total Checking</th>
-							<!-- 
+
+
+
+				<div class="container" style="height: 450px;">
+					<!-- Begin Table Search Panel v1 -->
+					<div class="table-search-v1 panel panel-dark margin-bottom-50">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<i class="fa fa-globe"></i> Weekely Appointments
+							</h3>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Student Name</th>
+										<th class="hidden-sm">Email</th>
+										<th>Phone</th>
+										<th>Entry</th>
+										<th>Stream</th>
+										<th>Total Checking</th>
+										<!-- 
 
 								<th>Approve</th> -->
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="app" items="${list}">
-								<tr>
-									<td>${app.name}</td>
-									<td>${app.email}</td>
-									<td>${app.phoneNo}</td>
-									<td>${app.entryDate}</td>
-									<td>${app.stream}</td>
-									<td>${app.count}</td>
-		
-								</tr>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="app" items="${list}">
+										<tr>
+											<td>${app.name}</td>
+											<td>${app.email}</td>
+											<td>${app.phoneNo}</td>
+											<td>${app.entryDate}</td>
+											<td>${app.stream}</td>
+											<td>${app.count}</td>
 
-							</c:forEach>
+										</tr>
+
+									</c:forEach>
 
 
-						</tbody>
-					</table>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- End Table Search Panel v1 -->
 				</div>
+
+
+
+
+				<jsp:include page="footer.jsp" />
+
 			</div>
-			<!-- End Table Search Panel v1 -->
-		</div>
+			<!--/wrapper-->
 
-
-
-
-		<jsp:include page="footer.jsp" />
-
-	</div>
-	<!--/wrapper-->
-
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/back-to-top.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/smoothScroll.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/parallax-slider/js/modernizr.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/parallax-slider/js/jquery.cslider.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
-	<!-- JS Page Level -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/plugins/owl-carousel.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/plugins/parallax-slider.js"></script>
-</body>
-</html>
+			<!-- JS Global Compulsory -->
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/jquery/jquery.min.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/jquery/jquery-migrate.min.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+			<!-- JS Implementing Plugins -->
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/back-to-top.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/smoothScroll.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/parallax-slider/js/modernizr.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/parallax-slider/js/jquery.cslider.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+			<!-- JS Customization -->
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+			<!-- JS Page Level -->
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/js/plugins/owl-carousel.js"></script>
+			<script type="text/javascript"
+				src="${pageContext.request.contextPath}/resources/js/plugins/parallax-slider.js"></script>
+		</body>
+		</html>

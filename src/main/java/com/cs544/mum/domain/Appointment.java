@@ -107,8 +107,11 @@ public class Appointment {
 	}
 
 	public void setStudentList(Student student) {
-		studentList.add(student);
-		student.setAppointmentList(this);
+
+		if (!studentList.contains(student)) {
+			studentList.add(student);
+			student.setAppointmentList(this);
+		}
 	}
 
 	public Staff getStaff() {
@@ -164,7 +167,7 @@ public class Appointment {
 	}
 
 	public void removeStudent(Student student) {
-		student.setAppointmentList(null);
+		//student.setAppointmentList(null);
 		this.studentList.remove(student);
 	}
 

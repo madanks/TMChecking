@@ -70,7 +70,7 @@ public class Student extends Person implements Serializable {
 			app.setStudentList(this);
 		}
 
-	}
+	} 
 
 	public int getCount() {
 		return count;
@@ -81,7 +81,7 @@ public class Student extends Person implements Serializable {
 	}
 
 	public void removeAppointment(Appointment app) {
-		app.setStudentList(null);
+		//app.setStudentList(null);
 		this.appointmentList.remove(app);
 	}
 

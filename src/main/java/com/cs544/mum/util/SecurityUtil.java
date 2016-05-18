@@ -9,6 +9,8 @@ import com.cs544.mum.domain.User;
 public class SecurityUtil {
 	private SecurityUtil() {
 	}
+	
+
 
 	public static String getUsername() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

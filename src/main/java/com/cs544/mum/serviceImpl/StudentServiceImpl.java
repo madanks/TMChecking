@@ -35,16 +35,20 @@ public class StudentServiceImpl implements StudentService {
 
 	public void removeAppointment(long id) {
 		Appointment appo = appointmentdao.findOne(id);
-		Student student = studentDAO.findOne("bimal");
+		Student student = studentDAO.findOne(SecurityUtil.getUsername());
+		
+		
 		int e = appo.getEnrolled();
 		appo.setEnrolled(e - 1);
-		for (Student s : appo.getStudentList()) {
-			appo.removeStudent(s);
-			;
-		}
-
+		student.removeAppointment(appo);
+		appo.removeStudent(student);
 		appointmentdao.save(appo);
+		studentDAO.save(student);
 
-		System.out.println("check");
+	}
+
+	public int findCount() {
+		Student s = studentDAO.findOne(SecurityUtil.getUsername());
+		return s.getCount();
 	}
 }

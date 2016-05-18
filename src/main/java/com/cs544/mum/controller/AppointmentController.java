@@ -51,6 +51,7 @@ public class AppointmentController {
 	@RequestMapping(value = "/student/availableappointment", method = RequestMethod.GET)
 	public String availableAppointment(Model model) {
 		model.addAttribute("appointment", appointmentService.findAvailableAppointment());
+		model.addAttribute("count", count());
 		return "availableAppointments";
 	}
 
@@ -86,6 +87,7 @@ public class AppointmentController {
 
 	@RequestMapping(value = "/student/selectedappointment", method = RequestMethod.GET)
 	public String selectedAppointment(Model model) {
+		model.addAttribute("count", count());
 		model.addAttribute("appointment", appointmentService.findSelectedAppointment());
 		return "selectedappointments";
 	}
@@ -93,5 +95,9 @@ public class AppointmentController {
 	@RequestMapping("*")
 	public String pageNotFound() {
 		return "pagenotfound";
+	}
+
+	public int count() {
+		return studentService.findCount();
 	}
 }

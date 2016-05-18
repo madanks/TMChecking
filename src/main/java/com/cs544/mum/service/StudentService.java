@@ -6,4 +6,6 @@ public interface StudentService {
 
 	public void removeAppointment(long id);
 
+	public int findCount();
+
 }
