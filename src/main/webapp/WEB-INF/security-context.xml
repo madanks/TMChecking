@@ -23,12 +23,7 @@
 	</http>
 
 	<authentication-manager>
-<!-- 		<authentication-provider>
-			<user-service>
-				<user name="madan" password="madan" authorities="ROLE_STUDENT" />
-				<user name="abc" password="abc" authorities="ROLE_STAFF" />
-			</user-service>
-		</authentication-provider> -->
+
 
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"

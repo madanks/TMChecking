@@ -81,7 +81,7 @@
 		<!--/breadcrumbs-->
 
 
-		<div class="container">
+		<div class="container" style="height: 450px;">
 			<div class="row">
 				<h1>Welcome to TM Checking Center</h1>
 			</div>

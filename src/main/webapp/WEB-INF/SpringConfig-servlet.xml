@@ -4,12 +4,15 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 
 	<!-- Scan the annotation -->
@@ -68,22 +71,36 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
- 
 
-	<!-- ASmaa -->
-	<!-- -->
-<!-- 
-	<mvc:interceptors>
-		<bean id="webContentInterceptor"
-			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
-			<property name="cacheSeconds" value="0" />
-			<property name="useExpiresHeader" value="true" />
-			<property name="useCacheControlHeader" value="true" />
-			<property name="useCacheControlNoStore" value="true" />
-		</bean>
-	</mvc:interceptors> -->
-	<!-- End ASmaa -->
- 
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="movi.mov.madan@gmail.com" />
+		<property name="password" value="1234madan" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="emailSender" class="com.cs544.mum.util.EmailSender">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+	<task:annotation-driven executor="executorService"
+		scheduler="scheduler" />
+
+	<task:executor id="executorService" pool-size="5" /> <!-- To send emails and for Scheduler tasks -->
+
+	<task:scheduler id="scheduler" pool-size="20" />
+
+	<!-- AOP Configuration -->
+	<aop:aspectj-autoproxy />
+	<bean id="adviceBean" class="com.cs544.mum.aspects.Advice" />
+
 </beans>
 
 

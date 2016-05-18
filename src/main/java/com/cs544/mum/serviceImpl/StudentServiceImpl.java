@@ -1,8 +1,5 @@
 package com.cs544.mum.serviceImpl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,8 +33,7 @@ public class StudentServiceImpl implements StudentService {
 	public void removeAppointment(long id) {
 		Appointment appo = appointmentdao.findOne(id);
 		Student student = studentDAO.findOne(SecurityUtil.getUsername());
-		
-		
+
 		int e = appo.getEnrolled();
 		appo.setEnrolled(e - 1);
 		student.removeAppointment(appo);
@@ -50,5 +46,10 @@ public class StudentServiceImpl implements StudentService {
 	public int findCount() {
 		Student s = studentDAO.findOne(SecurityUtil.getUsername());
 		return s.getCount();
+	}
+
+	public Student findStudent(String username) {
+
+		return studentDAO.findOne(username);
 	}
 }
