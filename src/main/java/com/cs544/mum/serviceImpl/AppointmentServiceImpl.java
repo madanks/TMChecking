@@ -96,13 +96,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 		DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = new Date();
 		Student s = studentDAO.findOne(username);
+		
+		
 		for (Appointment app : s.getAppointmentList()) {
 			System.out.println(date.format(d));
 			System.out.println(date.format(app.getDate()));
 
 			if (date.format(d).equals(date.format(app.getDate()))) {
 				app.setCompleted(true);
-				appointmentdao.save(app);
+				//appointmentdao.save(app);
 				int count = s.getCount();
 				s.setCount(count + 1);
 				studentDAO.save(s);
