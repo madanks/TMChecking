@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,8 +43,16 @@ public class AppointmentController {
 	}
 
 	@RequestMapping(value = "/staff/addappointment", method = RequestMethod.POST)
-	public String addAppointment(Appointment appointment) throws ParseException {
-		appointmentService.save(appointment);
+	public String addAppointment(Appointment appointment, BindingResult result) throws ParseException {
+
+		if (result.hasErrors()) {
+			return "redirect:/staff/addappointment";
+		}
+		try {
+			appointmentService.save(appointment);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		return "redirect:/staff/addappointment";
 	}

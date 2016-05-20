@@ -99,8 +99,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 		
 		
 		for (Appointment app : s.getAppointmentList()) {
-			System.out.println(date.format(d));
-			System.out.println(date.format(app.getDate()));
+/*			System.out.println(date.format(d));
+			System.out.println(date.format(app.getDate()));*/
 
 			if (date.format(d).equals(date.format(app.getDate()))) {
 				app.setCompleted(true);

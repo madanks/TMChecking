@@ -51,7 +51,7 @@
 
 
 		<!--=== Content Part ===-->
-		<div class="container content">
+		<div class="container content" style="height: 410px;">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 					<c:if test="${error == true}">
@@ -81,9 +81,9 @@
 
 						<div class="row">
 							<div class="col-md-6 checkbox">
-								<label><input type="checkbox"
+							<!-- 	<label><input type="checkbox"
 									name="_spring_security_remember_me" value="true"> Stay
-									signed in</label>
+									signed in</label> -->
 							</div>
 							<div class="col-md-6">
 								<button class="btn-u pull-right" type="submit">Login</button>
@@ -92,11 +92,11 @@
 
 						<hr>
 
-						<h4>Forget your Password ?</h4>
+						<!-- <h4>Forget your Password ?</h4>
 						<p>
 							no worries, <a class="color-green" href="#">click here</a> to
 							reset your password.
-						</p>
+						</p> -->
 					</form>
 				</div>
 			</div>

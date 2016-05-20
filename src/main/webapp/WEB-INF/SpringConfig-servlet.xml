@@ -101,6 +101,13 @@
 	<aop:aspectj-autoproxy />
 	<bean id="adviceBean" class="com.cs544.mum.aspects.Advice" />
 
+	<bean id="logger" class="com.cs544.mum.logging.Logger" />
+
+
+	<bean id="staffLogAdvice" class="com.cs544.mum.aspects.staffLoggingAdvice">
+		<constructor-arg index="0" ref="logger" />
+	</bean>
+
 </beans>
 
 
